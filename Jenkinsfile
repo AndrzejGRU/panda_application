@@ -55,14 +55,12 @@ pipeline {
             steps {
                 configFileProvider([configFile(fileId: 'c935b131-4ff0-4597-8070-890126ba51c4', variable: 'mavensettings')]) {
                 sh 'mvn -s $mavensettings deploy -Dmaven.test.skip=true -e' 
-            }
-            
-        }   
-         
-       }
-          }
+                }
+            }   
+        }
+    }
         post {
-         always { 
+        always { 
             sh 'docker stop pandaapp'
             deleteDir()
             }
